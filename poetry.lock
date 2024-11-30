@@ -2075,7 +2075,10 @@ aiohttp = ">=3.8.3,<4.0.0"
 langchain-core = ">=0.2.43,<0.3.0"
 langchain-text-splitters = ">=0.2.0,<0.3.0"
 langsmith = ">=0.1.17,<0.2.0"
-numpy = {version = ">=1,<2", markers = "python_version < \"3.12\""}
+numpy = [
+    {version = ">=1,<2", markers = "python_version < \"3.12\""},
+    {version = ">=1.26.0,<2.0.0", markers = "python_version >= \"3.12\""},
+]
 pydantic = ">=1,<3"
 PyYAML = ">=5.3"
 requests = ">=2,<3"
@@ -2097,7 +2100,10 @@ files = [
 chromadb = ">=0.4.0,<0.5.4 || >0.5.4,<0.5.5 || >0.5.5,<0.6.0"
 fastapi = ">=0.95.2,<1"
 langchain-core = {version = ">=0.1.40,<0.4", markers = "python_version >= \"3.9\""}
-numpy = {version = ">=1,<2", markers = "python_version < \"3.12\""}
+numpy = [
+    {version = ">=1,<2", markers = "python_version < \"3.12\""},
+    {version = ">=1.26.0,<2.0.0", markers = "python_version >= \"3.12\""},
+]
 
 [[package]]
 name = "langchain-community"
@@ -2116,7 +2122,10 @@ dataclasses-json = ">=0.5.7,<0.7"
 langchain = ">=0.2.17,<0.3.0"
 langchain-core = ">=0.2.43,<0.3.0"
 langsmith = ">=0.1.112,<0.2.0"
-numpy = {version = ">=1,<2", markers = "python_version < \"3.12\""}
+numpy = [
+    {version = ">=1,<2", markers = "python_version < \"3.12\""},
+    {version = ">=1.26.0,<2.0.0", markers = "python_version >= \"3.12\""},
+]
 PyYAML = ">=5.3"
 requests = ">=2,<3"
 SQLAlchemy = ">=1.4,<3"
@@ -2137,7 +2146,10 @@ files = [
 jsonpatch = ">=1.33,<2.0"
 langsmith = ">=0.1.112,<0.2.0"
 packaging = ">=23.2,<25"
-pydantic = {version = ">=1,<3", markers = "python_full_version < \"3.12.4\""}
+pydantic = [
+    {version = ">=1,<3", markers = "python_full_version < \"3.12.4\""},
+    {version = ">=2.7.4,<3.0.0", markers = "python_full_version >= \"3.12.4\""},
+]
 PyYAML = ">=5.3"
 tenacity = ">=8.1.0,<8.4.0 || >8.4.0,<9.0.0"
 typing-extensions = ">=4.7"
@@ -2186,7 +2198,10 @@ files = [
 [package.dependencies]
 httpx = ">=0.23.0,<1"
 orjson = {version = ">=3.9.14,<4.0.0", markers = "platform_python_implementation != \"PyPy\""}
-pydantic = {version = ">=1,<3", markers = "python_full_version < \"3.12.4\""}
+pydantic = [
+    {version = ">=1,<3", markers = "python_full_version < \"3.12.4\""},
+    {version = ">=2.7.4,<3.0.0", markers = "python_full_version >= \"3.12.4\""},
+]
 requests = ">=2,<3"
 requests-toolbelt = ">=1.0.0,<2.0.0"
 
@@ -5172,5 +5187,5 @@ type = ["pytest-mypy"]
 
 [metadata]
 lock-version = "2.0"
-python-versions = "3.11.4"
-content-hash = "e7472e8d295322bafaeaa8cfeef9be65ce7b049041b87611adadae549341f2a8"
+python-versions = "^3.11"
+content-hash = "23af8911b2a928f2cb2f3ba60e5430efa9dd94bc6545d9a1957e4948be5e3632"
