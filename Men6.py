@@ -72,18 +72,17 @@ history_rag_chain = create_retrieval_chain(aware_retriever, history_qa_chain)
 from langchain_core.messages import HumanMessage, AIMessage
 chat_history = []
 
-for i in range(0, 6):
+for i in range(0, 15):
     query = str(input("Human : "))
-    response = history_rag_chain.invoke({"input": query, "chat_history": chat_history})
-    print(response["answer"])
-    chat_history.extend(
-        [
-            HumanMessage(content=query),
-            AIMessage(content=response["answer"]),
-        ]
-    )
-
-
-
-
-
+    if query == "exit":
+        break
+    else :
+        response = history_rag_chain.invoke({"input": query, "chat_history": chat_history})
+        print(response["answer"])
+        chat_history.extend(
+            [
+                HumanMessage(content=query),
+                AIMessage(content=response["answer"]),
+            ]
+        )
+    i+=1
