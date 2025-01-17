@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>main</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>conversational-rag</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7511,129 +7511,192 @@ a.anchor-link {
 <!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=465c003a-29cf-4cfe-a0c6-d36c04ae2b37">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="RAG-APPLICATION">RAG APPLICATION<a class="anchor-link" href="#RAG-APPLICATION">¶</a></h1>
+<h1 id="Conversational-RAG">Conversational RAG<a class="anchor-link" href="#Conversational-RAG">¶</a></h1>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f132152a">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Here I built a RAG application which is able to answer questions related to your document and also remembers the previous chat messages to give history aware contextualised answer.</p>
+<p>Link to GitHub repo : <a href="https://github.com/ArjunTewari/RAG_app/blob/main/Men6.py">https://github.com/ArjunTewari/RAG_app/blob/main/Men6.py</a></p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=96a73fbf-e241-499d-a235-32a87b46ee7c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Steps-:">Steps :<a class="anchor-link" href="#Steps-:">¶</a></h1>
+<h2 id="Intro">Intro<a class="anchor-link" href="#Intro">¶</a></h2><ul>
+<li>In most RAG applications we want to allow the user to have a back-and-forth conversation, meaning the application needs some sort of "memory" of past questions and answers.</li>
+</ul>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9c8ef906-9484-4b29-a963-e64e9ba68d3b">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>In the terminal write the following code to initialize the environment and not have any dependency related issue :</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">poetry</span>
-<span class="n">poetry</span> <span class="n">lock</span>
-<span class="n">poetry</span> <span class="n">install</span>
-<span class="n">poetry</span> <span class="n">shell</span>
-</pre></div>
+<h2 id="The-problem">The problem<a class="anchor-link" href="#The-problem">¶</a></h2><ul>
+<li>How do we handle when the user refers to previous Q&amp;As in the conversation?</li>
+</ul>
 </div>
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3c3ddb93-56cf-4f09-941e-16ea1d0812e3">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>This will create an environment with all the required versions of everything.</p>
+<h2 id="The-second-problem...">The second problem...<a class="anchor-link" href="#The-second-problem...">¶</a></h2><ul>
+<li>This is probably the topic that is worst explained in the LangChain documentation.</li>
+</ul>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ad3e3967-d201-458f-adbe-c27c104e2eed">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Import the required dependencies :</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">find_dotenv</span><span class="p">,</span> <span class="n">load_dotenv</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.vectorstores</span><span class="w"> </span><span class="kn">import</span> <span class="n">FAISS</span>
-<span class="n">_</span><span class="o">=</span><span class="n">load_dotenv</span><span class="p">(</span><span class="n">find_dotenv</span><span class="p">())</span>
-<span class="n">openai_api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"OPENAI_API_KEY"</span><span class="p">]</span>
-</pre></div>
+<h2 id="What-we-need-to-solve">What we need to solve<a class="anchor-link" href="#What-we-need-to-solve">¶</a></h2><ul>
+<li>Store the chat conversation.</li>
+<li>When the user enters a new input, put that input in context.</li>
+<li>Re-phrase the user input to have a contextualized input.</li>
+<li>Send the contextualized input to the retriever.</li>
+<li>Use the retriever to build a conversational rag chain.</li>
+<li>Add extra features like persising memory (save memory in a file) and session memories.</li>
+</ul>
 </div>
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2d049b49-4776-4ec4-aec5-02483ec25910">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Here we are using environment variables like openai_api key that has to be changed in the .env file</p>
+<h2 id="The-process-we-will-follow">The process we will follow<a class="anchor-link" href="#The-process-we-will-follow">¶</a></h2><ol>
+<li>Create a basic RAG without memory.</li>
+<li>Create a ChatPrompTemplate able to contextualize inputs.</li>
+<li>Create a retriever aware of memory.</li>
+<li>Create a basic conversational RAG.</li>
+<li>Create an advanced conversational RAG with persistence and session memories.</li>
+</ol>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=be46161e-45e9-46d7-8214-bcbea10aff2e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h4 id="Initializing-the-model-:">Initializing the model :<a class="anchor-link" href="#Initializing-the-model-:">¶</a></h4>
+<h2 id="Setup">Setup<a class="anchor-link" href="#Setup">¶</a></h2>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=871e0018-cba4-4959-881a-0a65093d202d">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="After-you-download-the-code-from-the-github-repository-in-your-computer">After you download the code from the github repository in your computer<a class="anchor-link" href="#After-you-download-the-code-from-the-github-repository-in-your-computer">¶</a></h4><p>In terminal:</p>
+<ul>
+<li>cd project_name</li>
+<li>pyenv local 3.11.4</li>
+<li>poetry install</li>
+<li>poetry shell</li>
+</ul>
+<h4 id="To-open-the-notebook-with-Jupyter-Notebooks">To open the notebook with Jupyter Notebooks<a class="anchor-link" href="#To-open-the-notebook-with-Jupyter-Notebooks">¶</a></h4><p>In terminal:</p>
+<ul>
+<li>jupyter lab</li>
+</ul>
+<p>Go to the folder of notebooks and open the right notebook.</p>
+<h4 id="To-see-the-code-in-Virtual-Studio-Code-or-your-editor-of-choice.">To see the code in Virtual Studio Code or your editor of choice.<a class="anchor-link" href="#To-see-the-code-in-Virtual-Studio-Code-or-your-editor-of-choice.">¶</a></h4><ul>
+<li>open Virtual Studio Code or your editor of choice.</li>
+<li>open the project-folder</li>
+<li>open the 001-conversational-rag.py file</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f74a7245-c5fe-4c4e-98e7-31b4708e8698">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Create-your-.env-file">Create your .env file<a class="anchor-link" href="#Create-your-.env-file">¶</a></h2><ul>
+<li>In the github repo we have included a file named .env.example</li>
+<li>Rename that file to .env file and here is where you will add your confidential api keys. Remember to include:</li>
+<li>OPENAI_API_KEY=your_openai_api_key</li>
+<li>LANGCHAIN_TRACING_V2=true</li>
+<li>LANGCHAIN_ENDPOINT=<a href="https://api.smith.langchain.com">https://api.smith.langchain.com</a></li>
+<li>LANGCHAIN_API_KEY=your_langchain_api_key</li>
+<li>LANGCHAIN_PROJECT=your_project_name</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=863dd299-0780-49ad-a1b7-b76e249350da">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>We will call our LangSmith project <strong>001-conversational-rag</strong>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b436a426-8b00-43f1-b523-60534a289f44">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Connect-with-the-.env-file-located-in-the-same-directory-of-this-notebook">Connect with the .env file located in the same directory of this notebook<a class="anchor-link" href="#Connect-with-the-.env-file-located-in-the-same-directory-of-this-notebook">¶</a></h2>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e4955a96-5e55-4d55-b92e-bf50538be227">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>If you are using the pre-loaded poetry shell, you do not need to install the following package because it is already pre-loaded for you:</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=033a1517-e787-4002-817c-7737e18a2be3">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7641,25 +7704,13 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatOpenAI</span>
-<span class="n">llm</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span><span class="n">model</span> <span class="o">=</span> <span class="s2">"gpt-3.5-turbo-0125"</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!pip install python-dotenv</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>We will create</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=fecd39d0-e72e-4bc2-8a68-2fa4008ea365">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7667,9 +7718,528 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span><span class="p">,</span> <span class="n">find_dotenv</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">load_dotenv</span><span class="p">(</span><span class="n">find_dotenv</span><span class="p">())</span>
+<span class="n">openai_api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"OPENAI_API_KEY"</span><span class="p">]</span>
 </pre></div>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=03f4a923-b19e-498e-9be5-e47ec4a77d80">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Install-LangChain">Install LangChain<a class="anchor-link" href="#Install-LangChain">¶</a></h2>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0b6c4cd4-2855-4708-9c94-6dfc4b25bff9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>If you are using the pre-loaded poetry shell, you do not need to install the following package because it is already pre-loaded for you:</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=c1cf94ae-6c39-4475-9c5b-4b74d8d78753">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!pip install langchain</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=189e9e17-dfb0-4fd3-85b9-1fba83771941">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Connect-with-an-LLM">Connect with an LLM<a class="anchor-link" href="#Connect-with-an-LLM">¶</a></h2>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b0f22855-1656-49e8-b1d9-a352affbd814">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>If you are using the pre-loaded poetry shell, you do not need to install the following package because it is already pre-loaded for you:</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=148df8e0-361d-4ddd-8709-af48fa1648d1">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!pip install langchain-openai</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a1998155-91de-4cbc-bc88-8d77beefb51b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<ul>
+<li>NOTE: Since right now is the best LLM in the market, we will use OpenAI by default. You will see how to connect with other Open Source LLMs like Llama3 or Mistral in a next lesson.</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6ae8595e-5c07-4b02-8a79-db55fd357527">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatOpenAI</span>
+
+<span class="n">llm</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">"gpt-3.5-turbo-0125"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6f2a7e19-cf0b-4ffe-96d8-181be96ac986">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>If you are using the pre-loaded poetry shell, you do not need to install the following package because it is already pre-loaded for you:</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=bc942a2e-b9d3-4f5f-a612-f212cacc8bdd">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!pip install langchain-community langchain-chroma bs4</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5bfbec79-d2de-4d55-a2fa-e2125f914e56">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="The-process-we-will-follow">The process we will follow<a class="anchor-link" href="#The-process-we-will-follow">¶</a></h2><ol>
+<li>Create a basic RAG without memory.</li>
+<li>Create a ChatPrompTemplate able to contextualize inputs.</li>
+<li>Create a retriever aware of memory.</li>
+<li>Create a basic conversational RAG.</li>
+<li>Create an advanced conversational RAG with persistence and session memories.</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=af7f596c-4904-49b2-ad65-7c10988d5bf5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Step-1:-Create-a-basic-RAG-without-memory">Step 1: Create a basic RAG without memory<a class="anchor-link" href="#Step-1:-Create-a-basic-RAG-without-memory">¶</a></h2><ul>
+<li>We will use the RAG process we already know.</li>
+<li>We will use create_stuff_documents_chain to build a qa chain: a chain able to asks questions to an LLM.</li>
+<li>We will use create_retrieval_chain and the qa chain to build the RAG chain: a chain able to asks questions to the retriever and then format the response with the LLM.</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=d7f29f71-3210-47b4-91d2-82ae30d11c57">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">bs4</span>
+<span class="c1">#from langchain import hub</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain.chains</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_retrieval_chain</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain.chains.combine_documents</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_stuff_documents_chain</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.document_loaders</span><span class="w"> </span><span class="kn">import</span> <span class="n">TextLoader</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.prompts</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatPromptTemplate</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAIEmbeddings</span>
+
+<span class="n">text</span> <span class="o">=</span> <span class="n">TextLoader</span><span class="p">(</span><span class="s2">"data/be-good.txt"</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.vectorstores</span><span class="w"> </span><span class="kn">import</span> <span class="n">FAISS</span>
+<span class="n">vector_db</span> <span class="o">=</span> <span class="n">FAISS</span><span class="o">.</span><span class="n">from_documents</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">OpenAIEmbeddings</span><span class="p">())</span>
+<span class="n">retriever</span> <span class="o">=</span> <span class="n">vector_db</span><span class="o">.</span><span class="n">as_retriever</span><span class="p">()</span>
+
+<span class="n">system_prompt</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">"You are an assistant for question-answering tasks. "</span>
+    <span class="s2">"Use the following pieces of retrieved context to answer "</span>
+    <span class="s2">"the question. If you don't know the answer, say that you "</span>
+    <span class="s2">"don't know. Use three sentences maximum and keep the "</span>
+    <span class="s2">"answer concise."</span>
+    <span class="s2">"</span><span class="se">\n\n</span><span class="s2">"</span>
+    <span class="s2">"</span><span class="si">{context}</span><span class="s2">"</span>
+<span class="p">)</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_messages</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="p">(</span><span class="s2">"system"</span><span class="p">,</span> <span class="n">system_prompt</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">"human"</span><span class="p">,</span> <span class="s2">"</span><span class="si">{input}</span><span class="s2">"</span><span class="p">),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=b97dff6a-e703-4ed9-9701-3e08cbaabb35">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">question_answer_chain</span> <span class="o">=</span> <span class="n">create_stuff_documents_chain</span><span class="p">(</span><span class="n">llm</span><span class="p">,</span> <span class="n">prompt</span><span class="p">)</span>
+
+<span class="n">rag_chain</span> <span class="o">=</span> <span class="n">create_retrieval_chain</span><span class="p">(</span><span class="n">retriever</span><span class="p">,</span> <span class="n">question_answer_chain</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8616863f-6b53-40f3-bcd1-bc0dd73c5207">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<ul>
+<li>Let's try the app:</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=7772399b-c563-4a46-9051-2c66344c632e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">output</span> <span class="o">=</span> <span class="n">rag_chain</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">"input"</span><span class="p">:</span> <span class="s2">"What is this article about?"</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6b471ef7-7723-4b24-9769-27381ada7dc6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">output</span><span class="p">[</span><span class="s2">"answer"</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[10]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>'The article discusses the motto "Make something people want" coined by Y Combinator founders and how it relates to building successful businesses. It explores the idea of focusing on creating value for users before worrying about monetization, suggesting that this approach could resemble a charity model. Examples like Craigslist are used to illustrate this concept of running a successful business with a focus on user needs over profit.'</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e804378d-7639-451e-95a8-b40f1419e907">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<ul>
+<li>As we can see in the following question, our app has no memory of the conversation.</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=34cc6fb8-0778-4df4-880f-d4957ff90c27">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">output</span> <span class="o">=</span> <span class="n">rag_chain</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">"input"</span><span class="p">:</span> <span class="s2">"What was my previous question about?"</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6660b23a-4203-44c8-a516-84bf9b233f67">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">output</span><span class="p">[</span><span class="s2">"answer"</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>'Your previous question was about the concept of benevolence in businesses and organizations, specifically how being benevolent can lead to success and growth. The idea was discussed in relation to examples such as Google, Microsoft, and Craigslist, highlighting the potential power of benevolence as a guiding principle.'</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5b495ecd-9dba-45fe-b192-f2210ee4f382">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Step-2:-Create-a-ChatPromptTemplate-able-to-contextualize-inputs">Step 2: Create a ChatPromptTemplate able to contextualize inputs<a class="anchor-link" href="#Step-2:-Create-a-ChatPromptTemplate-able-to-contextualize-inputs">¶</a></h2><ul>
+<li>Goal: put the input in context and re-phrase it so we have a contextualized input.</li>
+<li>We will define a new system prompt that instructs the LLM in how to contextualize the input.</li>
+<li>Our new ChatPromptTemplate will include:<ul>
+<li>The new system prompt.</li>
+<li>MessagesPlaceholder, a placeholder used to pass the list of messages included in the chat_history.</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=aeb66712-913d-4943-831b-ea80aeda1df5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.prompts</span><span class="w"> </span><span class="kn">import</span> <span class="n">MessagesPlaceholder</span>
+
+<span class="n">contextualize_q_system_prompt</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">"Given a chat history and the latest user question "</span>
+    <span class="s2">"which might reference context in the chat history, "</span>
+    <span class="s2">"formulate a standalone question which can be understood "</span>
+    <span class="s2">"without the chat history. Do NOT answer the question, "</span>
+    <span class="s2">"just reformulate it if needed and otherwise return it as is."</span>
+<span class="p">)</span>
+
+<span class="n">contextualize_q_prompt</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_messages</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="p">(</span><span class="s2">"system"</span><span class="p">,</span> <span class="n">contextualize_q_system_prompt</span><span class="p">),</span>
+        <span class="n">MessagesPlaceholder</span><span class="p">(</span><span class="s2">"chat_history"</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">"human"</span><span class="p">,</span> <span class="s2">"</span><span class="si">{input}</span><span class="s2">"</span><span class="p">),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=44b770b5-da83-4687-a5b5-e01f34b0ee39">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Step-3:-Create-a-Retriever-aware-of-the-memory">Step 3: Create a Retriever aware of the memory<a class="anchor-link" href="#Step-3:-Create-a-Retriever-aware-of-the-memory">¶</a></h2><ul>
+<li>We will build our new retriever with create_history_aware_retriever that uses the contextualized input to get a contextualized response.</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=74591ec2-2461-4a67-9187-82b3d052df67">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.chains</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_history_aware_retriever</span>
+
+<span class="n">history_aware_retriever</span> <span class="o">=</span> <span class="n">create_history_aware_retriever</span><span class="p">(</span>
+    <span class="n">llm</span><span class="p">,</span> <span class="n">retriever</span><span class="p">,</span> <span class="n">contextualize_q_prompt</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6e0aeb46-3002-407a-950f-bd07d6eb0fdc">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Step-4:-Create-a-basic-Conversational-RAG">Step 4: Create a basic Conversational RAG<a class="anchor-link" href="#Step-4:-Create-a-basic-Conversational-RAG">¶</a></h2><ul>
+<li>We will use the retriever aware of memory, that uses the prompt with contextualized input.</li>
+<li>We will use create_stuff_documents_chain to build a qa chain: a chain able to asks questions to an LLM.</li>
+<li>We will use create_retrieval_chain and the qa chain to build the RAG chain: a chain able to asks questions to the retriever and then format the response with the LLM.</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9b154434-7bdd-48e8-9438-5839c2a186d4">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.chains</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_retrieval_chain</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain.chains.combine_documents</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_stuff_documents_chain</span>
+
+<span class="n">qa_prompt</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_messages</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="p">(</span><span class="s2">"system"</span><span class="p">,</span> <span class="n">system_prompt</span><span class="p">),</span>
+        <span class="n">MessagesPlaceholder</span><span class="p">(</span><span class="s2">"chat_history"</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">"human"</span><span class="p">,</span> <span class="s2">"</span><span class="si">{input}</span><span class="s2">"</span><span class="p">),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">question_answer_chain</span> <span class="o">=</span> <span class="n">create_stuff_documents_chain</span><span class="p">(</span><span class="n">llm</span><span class="p">,</span> <span class="n">qa_prompt</span><span class="p">)</span>
+
+<span class="n">history_rag_chain</span> <span class="o">=</span> <span class="n">create_retrieval_chain</span><span class="p">(</span><span class="n">history_aware_retriever</span><span class="p">,</span> <span class="n">question_answer_chain</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=930e119c-ece2-4686-af5b-1bdc1f1ea19f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Trying-our-basic-conversational-RAG">Trying our basic conversational RAG<a class="anchor-link" href="#Trying-our-basic-conversational-RAG">¶</a></h4><p>Below we ask a question and a follow-up question that requires contextualization to return a sensible response. Because our chain includes a "chat_history" input, the caller needs to manage the chat history. We can achieve this by appending input and output messages to a list:</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f4a1e69d-105f-492c-9b2f-c956522ababd">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.messages</span><span class="w"> </span><span class="kn">import</span> <span class="n">HumanMessage</span><span class="p">,</span> <span class="n">AIMessage</span>
+<span class="n">chat_history</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">"Human : "</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">query</span> <span class="o">==</span> <span class="s2">"exit"</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="k">else</span> <span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">history_rag_chain</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">"input"</span><span class="p">:</span> <span class="n">query</span><span class="p">,</span> <span class="s2">"chat_history"</span><span class="p">:</span> <span class="n">chat_history</span><span class="p">})</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">"answer"</span><span class="p">])</span>
+        <span class="n">chat_history</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">HumanMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">query</span><span class="p">),</span>
+                <span class="n">AIMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">response</span><span class="p">[</span><span class="s2">"answer"</span><span class="p">]),</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+    <span class="n">i</span><span class="o">+=</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Your previous question was about the topic or subject of the article under discussion.
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5ef0037a-d5cb-4813-8671-bc914401575e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="How-to-execute-the-code-from-Visual-Studio-Code">How to execute the code from Visual Studio Code<a class="anchor-link" href="#How-to-execute-the-code-from-Visual-Studio-Code">¶</a></h2><ul>
+<li>In Visual Studio Code, see the file Men6.py</li>
+<li>In terminal, make sure you are in the directory of the file and run:<ul>
+<li>python Men6.py</li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 </div>
